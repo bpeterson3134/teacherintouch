@@ -1,3 +1,4 @@
+package teacherintouch.servlet;
 
 
 import java.io.IOException;
@@ -13,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 @WebServlet("/GetStudents")
-public class GetStudents extends HttpServlet {
+public class GetStudentsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetStudents() {
+    public GetStudentsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +36,8 @@ public class GetStudents extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String teacher = request.getParameter("teacher");
+		String teacherID = request.getParameter("teacherID");
+		
 				
 	}
 
