@@ -15,4 +15,8 @@ public interface StudentDelegate {
 	
 	public Student getStudent(int studentID);
 	
+	public boolean addStudent(Student s);
+	
+	public boolean updateStudent(Student s);
+	
 }

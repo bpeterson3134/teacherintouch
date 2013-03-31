@@ -4,9 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Teacher In Touch</title>
 </head>
 <body>
-
+	<H1 align="center"><i>Teacher's</i> Students</H1>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	
+	<c:forEach var="student" items="${students}">
+		<tr valign="top">
+			<td>${student.firstName}</td>
+		</tr>
+	</c:forEach>
+	
+	<c:if test="${empty students}">
+		<p align="center">You have ${fn:length(students)} student(s) enrolled in your classroom</p>
+	</c:if>
+	
 </body>
 </html>

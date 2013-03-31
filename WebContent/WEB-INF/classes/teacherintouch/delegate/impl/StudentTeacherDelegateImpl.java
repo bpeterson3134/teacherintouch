@@ -1,8 +1,13 @@
 package teacherintouch.delegate.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+import teacherintouch.dao.StudentTeacherDAO;
+import teacherintouch.dao.impl.StudentTeacherDAOImpl;
+import teacherintouch.data.objects.Student;
 import teacherintouch.data.objects.StudentTeacher;
+import teacherintouch.delegate.StudentDelegate;
 import teacherintouch.delegate.StudentTeacherDelegate;
 
 /**
@@ -11,17 +16,18 @@ import teacherintouch.delegate.StudentTeacherDelegate;
  *
  */
 public class StudentTeacherDelegateImpl implements StudentTeacherDelegate {
-
+	private static final StudentTeacherDAO dao = new StudentTeacherDAOImpl();
+	private static final StudentDelegate studentDelegate = new StudentDelegateImpl();
+	
 	@Override
-	public Collection<StudentTeacher> getAllStudentTeacherPairs() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public StudentTeacher getAllStudentsOfTeacher(int teacherID) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Student> getAllStudentsOfTeacher(int teacherID) {
+		Collection<StudentTeacher> results =  dao.findAllStudentsOfTeacher(teacherID);
+		Collection<Student> students = new ArrayList<Student>();
+		for(StudentTeacher st : results) {
+			Student student = studentDelegate.getStudent(st.getStudentID());
+			students.add(student);
+		}
+		return students;
 	}
 
 }
