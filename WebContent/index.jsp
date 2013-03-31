@@ -7,14 +7,10 @@
 <title>Teacher In Touch</title>
 </head>
 <body>
-	<%--JSP scriptlet --%>
-	<%
-		String loginID = "1";
-	%>
-	<H1 align="center">Welcome to <u><i>Your Name</i></u>'s Classroom!</u></H1>
-	<a href="students?teacherID=<%=loginID%>">Students</a><br>
-	<a href="guardians">Guardians</a><br>
-	<a href="gradeBook">GradeBook</a><br>
-	<a href="faq">FAQ</a><br>
+<H1 align="center">Welcome to <u><i>Your Name</i></u>'s Classroom!</u></H1>
+<a href="dispStudents">Students</a><br>
+<a href="Guardians">Guardians</a><br>
+<a href="GradeBook">GradeBook</a><br>
+<a href="FAQ">FAQ</a><br>
 </body>
 </html>
