@@ -1,4 +1,4 @@
-package teacherintouch.dao;
+package teacherintouch.dao.rowmapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

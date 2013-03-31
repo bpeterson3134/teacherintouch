@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import teacherintouch.dao.rowmapper.RowMapper;
-import teacherintouch.data.objects.Student;
 import teacherintouch.data.objects.StudentTeacher;
 
 /**
