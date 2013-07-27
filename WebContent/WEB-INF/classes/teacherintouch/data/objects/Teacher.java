@@ -5,14 +5,15 @@ package teacherintouch.data.objects;
  *
  */
 public class Teacher {
-	private int id;
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String gender;
 	private String homeroom;
-	private int grade;
+	private Integer grade;
+	private String email;
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -52,11 +53,19 @@ public class Teacher {
 		return homeroom;
 	}
 	
-	public void setGrade(int grade) {
+	public void setGrade(Integer grade) {
 		this.grade = grade;
 	}
 	
-	public int getGrade() {
+	public Integer getGrade() {
 		return grade;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getEmail() {
+		return email;
 	}
 }

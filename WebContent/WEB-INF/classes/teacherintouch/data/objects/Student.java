@@ -5,18 +5,19 @@ package teacherintouch.data.objects;
  *
  */
 public class Student {
-	private int id;
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private int teacher;
-	private int homeroomTeacherID;
+	private Teacher teacher;
+	private Integer homeroomTeacherID;
+	private Integer grade;
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
@@ -44,19 +45,27 @@ public class Student {
 		return gender;
 	}
 	
-	public void setTeacher(int teacher) {
+	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
 	
-	public int getTeacher() {
+	public Teacher getTeacher() {
 		return teacher;
 	}
 	
-	public void setHomeroomTeacher(int homeroomTeacher) {
-		this.homeroomTeacherID = homeroomTeacher;
+	public void setHomeroomTeacherID(Integer homeroomTeacherID) {
+		this.homeroomTeacherID = homeroomTeacherID;
 	}
 	
-	public int getHomeroomTeacherID() {
+	public Integer getHomeroomTeacherID() {
 		return homeroomTeacherID;
+	}
+	
+	public void setGrade(Integer grade) {
+		this.grade = grade;
+	}
+	
+	public Integer getGrade() {
+		return grade;
 	}
 }

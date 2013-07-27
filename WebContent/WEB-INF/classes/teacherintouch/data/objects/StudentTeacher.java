@@ -6,22 +6,22 @@ package teacherintouch.data.objects;
  *
  */
 public class StudentTeacher {
-	private int teacherID;
-	private int studentID;
+	private Integer teacherID;
+	private Integer studentID;
 	
-	public void setTeacherID(int teacherID) {
+	public void setTeacherID(Integer teacherID) {
 		this.teacherID = teacherID;
 	}
 	
-	public int getTeacherID() {
+	public Integer getTeacherID() {
 		return teacherID;
 	}
 	
-	public void setStudentID(int studentID) {
+	public void setStudentID(Integer studentID) {
 		this.studentID = studentID;
 	}
 	
-	public int getStudentID() {
+	public Integer getStudentID() {
 		return studentID;
 	}
 

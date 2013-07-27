@@ -7,14 +7,10 @@
 <title>Teacher In Touch</title>
 </head>
 <body>
-	<%--JSP scriptlet --%>
-	<%
-		String loginID = "1";
-	%>
-	<H1 align="center">Welcome to <u><i>Your Name</i></u>'s Classroom</H1>
-	<a href="getStudents?teacherID=<%=loginID%>">Students</a><br>
-	<a href="guardians">Guardians</a><br>
-	<a href="gradeBook">GradeBook</a><br>
-	<a href="faq">FAQ</a><br>
+<%@ page isErrorPage="true" %>
+
+<h1>500 Error</h1>
+<p>The server encountered an internal error that prevented it from fulfilling this request.</p>
+<p>To continue, click the Back button.</p>
 </body>
 </html>

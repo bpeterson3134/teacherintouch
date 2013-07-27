@@ -7,7 +7,8 @@ CREATE TABLE teacher (
 	last_name VARCHAR(50) NOT NULL,
 	gender CHAR(1) NOT NULL,
 	homeroom VARCHAR(5),
-	grade INT
+	email VARCHAR(50),
+	grade INT NOT NULL
 );
 
 CREATE TABLE student (
@@ -15,7 +16,8 @@ CREATE TABLE student (
 	first_name VARCHAR(25) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
 	gender CHAR(1) NOT NULL,
-	homeroom_teacher_id INT NOT NULL,
+	homeroom_teacher_id INT,
+	grade INT NOT NULL, 
 	FOREIGN KEY(homeroom_teacher_id) REFERENCES teacher(id)
 );
 
@@ -47,7 +49,7 @@ CREATE TABLE student_guardian_rel (
 
 /**
  * 1 to many relationship.  Guardian can have many phone numbers
- * but a phone number can  only belong to one guardian
+ * but a phone number can only belong to one guardian
  */
 CREATE TABLE phone_details (
 	guardian_id INT NOT NULL, 

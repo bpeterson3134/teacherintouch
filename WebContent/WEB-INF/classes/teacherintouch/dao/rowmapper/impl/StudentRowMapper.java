@@ -20,7 +20,8 @@ public class StudentRowMapper implements RowMapper<Student>{
 		s.setFirstName(rs.getString(2));
 		s.setLastName(rs.getString(3));
 		s.setGender(rs.getString(4));
-		s.setHomeroomTeacher(rs.getInt(5));
+		s.setHomeroomTeacherID(rs.getInt(5) == 0? null : rs.getInt(5));
+		s.setGrade(rs.getInt(6));
 		return s;
 	}
 

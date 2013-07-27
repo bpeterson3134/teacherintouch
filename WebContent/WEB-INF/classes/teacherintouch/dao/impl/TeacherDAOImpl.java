@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import teacherintouch.dao.StudentTeacherDAO;
+import teacherintouch.dao.TeacherDAO;
 import teacherintouch.dao.rowmapper.RowMapper;
-import teacherintouch.dao.rowmapper.impl.StudentTeacherRowMapper;
+import teacherintouch.dao.rowmapper.impl.TeacherRowMapper;
 import teacherintouch.dao.util.DBUtil;
-import teacherintouch.data.objects.Student;
-import teacherintouch.data.objects.StudentTeacher;
 import teacherintouch.data.objects.Teacher;
 
 /**
@@ -21,17 +19,49 @@ import teacherintouch.data.objects.Teacher;
  * @author bryanpeterson
  *
  */
-public class StudentTeacherDAOImpl implements StudentTeacherDAO {
-	private static final RowMapper<StudentTeacher> rowMapper = new StudentTeacherRowMapper();
-
-
+public class TeacherDAOImpl implements TeacherDAO {
+	private static final RowMapper<Teacher> rowMapper = new TeacherRowMapper();
+	
 	@Override
-	public Collection<StudentTeacher> findAll() {
+	public Teacher findByPrimaryKey(int teacherID) {
 		Connection c = null;
 		PreparedStatement ps = null;
-		String query = "SELECT * FROM student_teacher";
+		String query = "SELECT * FROM teacher where id = ?";
 		ResultSet rs = null;
-		List<StudentTeacher> students = new ArrayList<StudentTeacher>();
+		Teacher t = null;
+		try {
+			c = DBUtil.getConnection();
+			ps = c.prepareStatement(query);
+			ps.setInt(1, teacherID);
+			rs = ps.executeQuery();
+
+			if(rs.next()) {
+				t = rowMapper.mapRow(rs, 1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				rs.close();
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return t;
+	}
+
+	@Override
+	public Collection<Teacher> findAll() {
+		Connection c = null;
+		PreparedStatement ps = null;
+		String query = "SELECT * FROM teacher";
+		ResultSet rs = null;
+		List<Teacher> teachers = new ArrayList<Teacher>();
 		try {
 			c = DBUtil.getConnection();
 			ps = c.prepareStatement(query);
@@ -39,9 +69,9 @@ public class StudentTeacherDAOImpl implements StudentTeacherDAO {
 
 			int rowNum = 1;
 			while(rs.next()) {
-				StudentTeacher st = new StudentTeacher();
-				st = rowMapper.mapRow(rs, rowNum);
-				students.add(st);
+				Teacher t = new Teacher();
+				t = rowMapper.mapRow(rs, rowNum);
+				teachers.add(t);
 				rowNum++;
 			}
 		} catch (SQLException e) {
@@ -58,56 +88,24 @@ public class StudentTeacherDAOImpl implements StudentTeacherDAO {
 			}
 		}
 		
-		return students;
+		return teachers;
 	}
 
 	@Override
-	public Collection<StudentTeacher> findAllStudentsOfTeacher(int teacherID) {
+	public boolean insertTeacher(Teacher t) {
 		Connection c = null;
 		PreparedStatement ps = null;
-		String query = "SELECT * FROM student_teacher where teacher_id = ?";
-		ResultSet rs;
-		Collection<StudentTeacher> stLinks = new ArrayList<StudentTeacher>();
-		try {
-			c = DBUtil.getConnection();
-			ps = c.prepareStatement(query);
-			ps.setInt(1, teacherID);
-			rs = ps.executeQuery();
-
-			int rowNum = 1;
-			while(rs.next()) {
-				StudentTeacher st = new StudentTeacher();
-				st = rowMapper.mapRow(rs, rowNum);
-				stLinks.add(st);
-				rowNum++;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				ps.close();
-				c.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		return stLinks;
-	}
-
-	@Override
-	public boolean insertStudent(Student s, Teacher t) {
-		Connection c = null;
-		PreparedStatement ps = null;
-		String query = "INSERT INTO student_teacher VALUES(?, ?)";
+		String query = "INSERT INTO teacher VALUES(NULL, ?, ?, ?, ?, ?, ?)";
 		int rowsAffected = 0;
 		try {
 			c = DBUtil.getConnection();
 			ps = c.prepareStatement(query);
-			ps.setInt(1, t.getId());
-			ps.setInt(2, s.getId());
+			ps.setString(1, t.getFirstName());
+			ps.setString(2, t.getLastName());
+			ps.setString(3, t.getGender());
+			ps.setString(4, t.getHomeroom());
+			ps.setInt(5, t.getGrade());
+			ps.setString(6, t.getEmail());
 			rowsAffected = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -122,6 +120,7 @@ public class StudentTeacherDAOImpl implements StudentTeacherDAO {
 			}
 		}
 		return rowsAffected > 0;
+		
 	}
 
 }
