@@ -104,7 +104,11 @@ public class StudentDAOImpl implements StudentDAO {
 			ps.setString(1, s.getFirstName());
 			ps.setString(2, s.getLastName());
 			ps.setString(3, s.getGender());
-			ps.setInt(4, s.getHomeroomTeacherID());
+			if (s.getHomeroomTeacherID() == null) {
+				ps.setNull(4, java.sql.Types.INTEGER);
+			} else {
+				ps.setInt(4,s.getHomeroomTeacherID());
+			}
 			ps.setInt(5, s.getGrade());
 			rowsAffected = ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -166,6 +170,38 @@ public class StudentDAOImpl implements StudentDAO {
 		
 		return rowsAffected > 0;
 		
+	}
+
+	@Override
+	public boolean deleteStudent(Student s) {
+		Connection c = null;
+		PreparedStatement ps = null;
+		StringBuilder query = new StringBuilder("DELETE FROM student").append(" ");
+		query.append("WHERE id=?");
+		int rowsAffected = 0;
+		try {
+			c = DBUtil.getConnection();
+			ps = c.prepareStatement(query.toString());
+			if (s.getId() == null) {
+				ps.setNull(1, java.sql.Types.INTEGER);
+			} else {
+				ps.setInt(1,s.getId());
+			}
+			rowsAffected = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return rowsAffected > 0;
 	}
 
 }

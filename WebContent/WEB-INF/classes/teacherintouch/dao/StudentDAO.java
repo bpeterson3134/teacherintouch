@@ -15,4 +15,5 @@ public interface StudentDAO {
 	public Collection<Student> findAll();
 	public boolean insertStudent(Student s);
 	public boolean updateStudent(Student s);
+	public boolean deleteStudent(Student s);
 }

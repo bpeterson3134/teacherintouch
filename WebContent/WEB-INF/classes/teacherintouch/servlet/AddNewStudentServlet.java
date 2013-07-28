@@ -58,10 +58,8 @@ public class AddNewStudentServlet extends HttpServlet {
 		student.setTeacher(teacher);
 		stDelegate.addNewStudentOfTeacher(student, teacher);
 		
-		//forward request to jsp
-		String url = "/students.jsp?teacherID=" + teacher.getId();
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-		dispatcher.forward(request, response);
+		//send redirect since a refresh of page on a forward will try inserting the student again
+		response.sendRedirect("getStudents?teacherID=" + teacher.getId());
 	}
 
 }

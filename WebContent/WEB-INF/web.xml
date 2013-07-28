@@ -31,6 +31,14 @@
   		<servlet-name>UpdateStudentServlet</servlet-name>
   		<url-pattern>/updateStudentServlet</url-pattern>
   	</servlet-mapping>
+  	<servlet>
+  		<servlet-name>DeleteStudentServlet</servlet-name>
+	<servlet-class>teacherintouch.servlet.DeleteStudentServlet</servlet-class>
+	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>DeleteStudentServlet</servlet-name>
+  		<url-pattern>/deleteStudentServlet</url-pattern>
+  	</servlet-mapping>
   	
   	<!-- jsp mappings to remove .jsp from url-->
 	<servlet>

@@ -19,4 +19,6 @@ public interface StudentDelegate {
 	
 	public boolean updateStudent(Student s);
 	
+	public boolean deleteStudent(Student s);
+	
 }

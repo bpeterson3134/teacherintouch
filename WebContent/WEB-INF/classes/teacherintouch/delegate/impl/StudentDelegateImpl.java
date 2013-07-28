@@ -36,4 +36,9 @@ public class StudentDelegateImpl implements StudentDelegate {
 		return dao.updateStudent(s);
 		
 	}
+
+	@Override
+	public boolean deleteStudent(Student s) {
+		return dao.deleteStudent(s);
+	}
 }
